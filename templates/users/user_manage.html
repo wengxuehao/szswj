@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block my_css %}
+    <link rel="stylesheet" href="{% static 'css/user_manage.css' %}">
+{% endblock %}
+
+{% block title %}用户管理页面{% endblock %}
+
+{% block nav-user %}active-tab{% endblock %}
+
+{% block content %}
+
+    <div class="layui-fluid">
+        <div class="layui-tab layui-tab-brief" lay-filter="role-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id='1'>用户列表</li>
+                <li lay-id='2'>角色管理</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+
+                    <!-- 这里是管理员列表添加位置 -->
+                    <table id="user-admin" lay-filter='useradmin'>
+
+                    </table>
+
+                    <!-- 点击新增管理员按钮 -->
+                    <div class="manage-add">
+                        <button class="layui-btn" id="add-manage">新增用户</button>
+                    </div>
+                </div>
+
+                <div class="layui-tab-item">
+
+                    <!-- 这里是角色列表添加位置 -->
+                    <table id="user-role" lay-filter='userrole'>
+
+                    </table>
+
+                    <!-- 点击新增角色权限按钮 -->
+                    <div class="manage-add">
+                        <button class="layui-btn" id="create-role">新增角色</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'users/base-table.html' %}
+
+{% endblock %}
+
+{% block my_js %}
+
+    <script type="text/html" id="role-perm">
+        <p lay-event="view-perm">点击查看</p>
+    </script>
+
+    <script type="text/html" id="user-perms">
+        {% verbatim %}
+
+        {{ each data data_name index }}
+
+        <p>{{ data_name | newName }}</p>
+
+        {{ /each }}
+        {% endverbatim %}
+    </script>
+
+    <script type="text/html" id="add-user-perms">
+        {% verbatim %}
+
+        {{ each data group index }}
+
+        <option value="{{ group.id }}">{{ group.name }}</option>
+
+        {{ /each }}
+
+        {% endverbatim %}
+    </script>
+
+    <script type="text/html" id="change-user-perms">
+        {% verbatim %}
+        {{ each data group index }}
+        <option value="{{ group.id }}">{{ group.name }}</option>
+        {{ /each }}
+        {% endverbatim %}
+    </script>
+
+    <script type="text/html" id="user-make">
+        <button class="layui-btn layui-btn" id="user-modify" lay-event="user-modify">分组</button>
+        <button class="layui-btn layui-btn-warm" id="user-password" lay-event="user-password">密码</button>
+        <button class="layui-btn layui-btn-normal" id="user-del" lay-event="user-del">删除</button>
+    </script>
+
+    <script type="text/html" id="role-make">
+        <button class="layui-btn layui-btn-warm" id="role-modify" lay-event="role-modify">修改</button>
+        <button class="layui-btn layui-btn-normal" id="role-del" lay-event="role-del">删除</button>
+    </script>
+
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/user_manage.js' %}"></script>
+
+{% endblock %}

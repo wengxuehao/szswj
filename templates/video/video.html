@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}视频监控页{% endblock %}
+
+{% block my_css %}
+
+    <link rel="stylesheet" href="{% static 'css/video.css' %}">
+    <link rel="stylesheet" href="{% static 'css/video_home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/video-js.css' %}">
+
+{% endblock %}
+
+{% block nav_video %}active-nav{% endblock %}
+
+{% block content %}
+
+    <div class="layui-fluid color-body">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-sm2">
+                <div class="video-left" id="manage-left">
+                    <ul id="video-tree">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-col-sm10">
+                <div class="warn-map" id="allmap">
+
+                </div>
+            </div>
+            <div class="warn-list">
+                <ul>
+                    <li>
+                        <strong id="demo1">全部</strong>
+                        <span>({{ map_sum }})</span>
+                    </li>
+                    <li>
+                        <strong>在线</strong>
+                        <span>({{ map_good }})</span>
+                    </li>
+                    <li id='show-down'>
+                        <strong>离线</strong>
+                        <span>({{ map_fail }})</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="show-maps">
+        {% for map in show_maps %}
+            <p>{{ map.name }}</p>
+        {% endfor %}
+    </div>
+    <div class="warn-tips" id="warn-tips" style="display:none">
+
+    </div>
+
+    <script id="warn-content-tree" type="text/html">
+
+        {% verbatim %}
+
+        <div class="warn-tips-top">
+            <p id="warn-content-1">
+                {{ name }}
+            </p>
+        </div>
+        <div class="warn-tips-1">
+            <div class="warn-content-2">
+                <video id="player" class="video-js vjs-default-skin vjs-big-play-centered" controls
+                       preload="auto" autoplay="autoplay"
+                       poster="/static/images/demo.jpg" width="250" height="150"
+                       data-setup='{}'>
+                </video>
+            </div>
+            <div class="warn-content-1">
+                <p>监控地址:</p>
+                <h5>{{ address }}</h5>
+                <p style='margin-top: 8px; font-size: 14px;'>未处理预警:</p>
+                <strong>{{ warn_count }}</strong>
+                <div class="warn-tips-3">
+                    <a id='maps-warn{{ id }}'>生成预警</a>
+                </div>
+            </div>
+        </div>
+
+        {% endverbatim %}
+
+    </script>
+
+    <script id="warn-content" type="text/html">
+
+        {% verbatim %}
+
+        <div class="warn-tips-top">
+            <p id="warn-content">
+                {{ data.name }}
+            </p>
+        </div>
+        <div class="warn-tips-1">
+            <div class="warn-content-2">
+                <video id="player" class="video-js vjs-default-skin vjs-big-play-centered" controls
+                       preload="auto" autoplay="autoplay"
+                       poster="/static/images/demo.jpg" width="250" height="150"
+                       data-setup='{}'>
+                </video>
+            </div>
+            <div class="warn-content-1">
+                <p>监控地址:</p>
+                <h5>{{ data.address }}</h5>
+                <p style='margin-top: 8px; font-size: 14px;'>未处理预警:</p>
+                <strong>{{ data.warn_count }}</strong>
+                <div class="warn-tips-3">
+                    <a id='maps-warn{{ index }}'>生成预警</a>
+                </div>
+            </div>
+        </div>
+
+        {% endverbatim %}
+
+    </script>
+
+{% endblock %}
+
+{% block my_js %}
+
+    <script src="{% static 'js/bdmap.js' %}"></script>
+    <script src="{% static 'js/video_home.js' %}"></script>
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/video.js' %}"></script>
+
+<script>
+// 视频监控页面树结构兼容小屏幕
+$(document).ready(function (param) {
+    var width = $(window).width();
+    if (width <= 1366) {
+        var maps = $('#allmap');
+        var map = $('#manage-left');
+        maps.css('width', '880px');
+        map.css('width', '260px');
+        maps.css('magin-left', '30px');
+    }
+ })
+</script>
+
+{% endblock %}

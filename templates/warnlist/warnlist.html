@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}预警分析页{% endblock %}
+
+{% block my_css %}
+
+<link rel="stylesheet" href="{% static 'css/warnlist.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-js.css' %}">
+
+{% endblock %}
+
+{% block nav-warn %}active-tab{% endblock %}
+
+{% block content %}
+
+<div class="warnlist-title">
+    <div class="warnlist-body">
+        {% comment %} <div class="layui-fluid">
+            <div class="layui-row">
+                <div class="warn-title">
+                    <p>预警处理</p>
+                </div>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="layui-fluid">
+            <table id="warn-table" lay-filter='warnlist' lay-data="'{id: 'warn-check'}">
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- 一键处理弹窗 -->
+<div class='' id="all-warn" style="display: none">
+    <button class="layui-btn layui-btn-warm" id="all-del">跳过</button>
+    <button class="layui-btn layui-btn-normal" id="all-save">处理</button>
+</div>
+
+<!-- 发送窗口弹出层
+    <div class="warn-send" id="warn-send" style="display: none">
+        <p>这里是处理发送</p>
+    </div>
+    -->
+
+<!-- 显示弹窗图片 -->
+<div id="image-views" style="display: none">
+
+</div>
+
+<!-- 弹窗播放视频 -->
+<div style="display: none" id="video-views" class="video-views">
+    <video id="play-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"
+        autoplay="autoplay" width="680" height="400" data-setup='{}'>
+
+    </video>
+</div>
+
+<!-- 弹窗筛选-预警类型 -->
+<div id="layer-warn-select" style="display: none">
+    <form class="layui-form" onclick="return false">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="checkbox" name="warn" value="1" title="智能预警">
+                <input type="checkbox" name="warn" value="2" title="手动预警">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 弹窗筛选-任务类型 -->
+<div id="layer-manage-select" style="display: none">
+    <form class="layui-form" onclick="return false">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="checkbox" name="manage" value="9" title="抛物检测">
+                <input type="checkbox" name="manage" value="10" title="泼水检测">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 弹窗筛选-时间筛选 -->
+<div id="layer-day-select" style="display: none">
+    <form class="layui-form" onclick="return false">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="checkbox" name="day" value="1" title="筛选白天">
+                <input type="checkbox" name="day" value="0" title="筛选夜晚">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 弹窗筛选-监控点 -->
+<div id="layer-dev-select" style="display: none">
+    <form class="layui-form" onclick="return false">
+        <div class="layui-form-item">
+            <div class="layui-input-block" id="add-select-dev">
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 标注图片展示 -->
+{#<div class="warn-image" id="image-url" style="display: none">#}
+{#    <canvas id="canvasId">#}
+{##}
+{#    </canvas>#}
+{#</div>#}
+
+{% endblock %}
+
+{% block my_js %}
+
+<!-- 列事件 -->
+<script type="text/html" id="warn-make">
+    <button class="layui-btn layui-btn-warm" id="warn-del" lay-event="warn-del">跳过</button>
+    <button class="layui-btn layui-btn-normal" id="warn-save" lay-event="warn-save">处理</button>
+</script>
+
+<!-- 表头事件 -->
+<script type="text/html" id="warn-tool">
+    <div class="layui-btn-container">
+        <button class="layui-btn" lay-event="make-pass" style="background: #5FB878">一键跳过</button>
+        <button class="layui-btn" lay-event="manage-select">任务类型</button>
+        <button class="layui-btn" lay-event="warn-select">预警类型</button>
+        <button class="layui-btn" lay-event="day-select">时间筛选</button>
+        <button class="layui-btn" lay-event="dev-select">监控筛选</button>
+    </div>
+</script>
+
+<script type="text/html" id="warn-type">
+    <span>△</span>
+</script>
+
+<script type="text/html" id="warns-image">
+    <p lay-event="view-warns">单击观看图片</p>
+</script>
+
+<script type="text/html" id="warn-image">
+    <p lay-event="view-image">双击观看图片</p>
+</script>
+
+<script type="text/html" id="add-image">
+    {% verbatim %}
+
+    {{ each data image index }}
+
+    <img src="{{ image.image_url }}" alt="" id="image{{ index }}">
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>
+
+<script type="text/html" id="select-dev">
+    {% verbatim %}
+
+    {{ each data dev index }}
+
+    <input type="checkbox" name="dev" value="{{ dev.id }}" title="{{ dev.name }}">
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>
+
+<script type="text/html" id="warn-video">
+    <p lay-event="view-video">点击观看视频</p>
+</script>
+
+<script src="{% static 'js/template-web.js' %}"></script>
+<script src="{% static 'js/warn_list.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,184 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block my_css %}
+
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+{% block nav %}
+
+{% endblock %}
+
+<div class="base">
+    <div class="base-tab">
+        <div class="tab-content">
+            <ul>
+                {% if perms.warnlist.view_warnmodel %}
+                    <li class="{% block nav-warn %}{% endblock %}">
+                        <a href="{% url 'warnlist:warn_list' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-notice"></i>
+                                <span>预警分析</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.warnlist.view_warntype %}
+                    <li class="{% block nav-sum %}{% endblock %}">
+                        <a href="{% url 'warnlist:sum_list' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-component"></i>
+                                <span>统计备案</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.video.change_play %}
+                    <li class="{% block nav-video %}{% endblock %}">
+                        <a href="{% url 'video:video_manage' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-app"></i>
+                                <span>监控管理</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.warnlist.view_warnmanage %}
+                    <li class="{% block nav-manage %}{% endblock %}">
+                        <a href="{% url 'warnlist:warn_manage' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-engine"></i>
+                                <span>任务管理</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.users.view_user %}
+                    <li class="{% block nav-user %}{% endblock %}">
+                        <a href="{% url 'users:user_manage' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-username"></i>
+                                <span>用户管理</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.public.view_userlog %}
+                    <li class="{% block nav-log %}{% endblock %}">
+                        <a href="{% url 'public:log' %}">
+                            <div class="tab-content-list">
+                                <i class="layui-icon layui-icon-log"></i>
+                                <span>操作日志</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="copyright">
+            <p>版权所有@苏州市水务局</p>
+        </div>
+    </div>
+    <div class="base-body">
+        <div class="base-body-title">
+            <div class="layui-fluid">
+                <div class="layui-row">
+                    <div class="layui-col-sm5">
+                        <div class="base-big">
+                            <img src="{% static 'images/logo1.png' %}" alt="">
+                            <span>苏州城区河道视频管理系统</span>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm5">
+                        <div class="base-body-title-left">
+                            {% if perms.maps.view_map %}
+                                <a href="{% url 'public:index_data' %}">
+                                    <i class="layui-icon layui-icon-layer">
+{#                                        <img src="{% static 'images/tv.png' %}" alt="">#}
+                                    </i>
+                                    <span>数据大屏</span>
+                                </a>
+                            {% endif %}
+                            {% if perms.maps.view_map %}
+                                <a href="{% url 'index' %}" class="{% block nav_index %}{% endblock %}">
+                                    <i class="layui-icon layui-icon-home"></i>
+                                    <span>控制台</span>
+                                </a>
+                            {% endif %}
+                            {% if perms.video.view_video %}
+                                <a href="{% url 'video:video' %}" class="{% block nav_video %}{% endblock %}">
+                                    <i class="layui-icon layui-icon-video"></i>
+                                    <span>视频监控</span>
+                                </a>
+                            {% endif %}
+                            {% if perms.video.change_video %}
+                                <a href="{% url 'video:video_home' %}" class="{% block nav_home %}{% endblock %}">
+                                    <i class="layui-icon layui-icon-play"></i>
+                                    <span>视频墙</span>
+                                </a>
+                            {% endif %}
+                            {% if perms.video.view_play %}
+                                <a href="{% url 'video:view_video' %}" class="{% block nav_view %}{% endblock %}">
+                                    <i class="layui-icon layui-icon-pause"></i>
+                                    <span>查看录像</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="layui-col-sm2">
+                        <div class="base-user">
+                            {% if request.user.is_authenticated %}
+                                <div class="user-name">
+                                    <span>{{ request.user.username }}</span>
+                                    <span>&nbsp;|&nbsp;</span>
+                                    <span id="logout">
+                                        <a href="{% url 'users:logout' %}">退出</a>
+                                    </span>
+                                </div>
+                            {% else %}
+                                <div class="user-name">
+                                    <a href="{% url 'users:login' %}">点击登录</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="base-body-content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/layui.js' %}"></script>
+
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+</script>
+
+{% block my_js %}
+
+{% endblock %}
+
+</body>
+
+</html>

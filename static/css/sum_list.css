@@ -1,0 +1,84 @@
+.sumlist-title {
+    height: 40px;
+    line-height: 40px;
+}
+
+.sumlist-title p {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.sumlist-title button {
+    float: right;
+}
+
+.sumlist-select {
+    background: transparent;;
+    border: 1px solid #ccc;
+    height: 28px;
+    margin-left: 15px;
+}
+
+.sumlist-bottom {
+    text-align: center;
+}
+
+.warn-title {
+    height: 40px;
+    line-height: 40px;
+}
+
+.warn-title p {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.warn-title button {
+    float: right;
+}
+
+.layui-tab-title {
+    border-bottom-style: none;
+}
+
+.layui-tab-title li {
+    border-radius: 5px;
+    line-height: 33px;
+}
+
+.layui-tab-title li {
+    min-width: 55px;
+}
+
+.layui-tab-title .layui-this {
+    background: #2FCC71;
+    color: white;
+    border-color: white;
+}
+
+.layui-tab-title .layui-this:after {
+    border-width: 0;
+    border-style: none;
+    border-bottom-color: white;
+    border-radius: 0;
+    pointer-events: none;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+    background-color: rgb(44,204,113);
+    border-radius: 2px;
+    color: white;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this:after {
+    border-bottom: none;
+}
+
+.layui-tab-content {
+    padding: 0;
+}
+
+.video-views {
+    padding-left: 10px;
+    box-sizing: border-box;
+}

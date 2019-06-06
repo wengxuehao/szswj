@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block my_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+<title>{% block title %}总控制台{% endblock %}</title>
+
+{% block nav_index %}active-nav{% endblock %}
+
+{% block content %}
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-sm6">
+                <div class="data-tv-1" id="index-left-height">
+                    <h5>实时预警统计数据</h5>
+                    <div class="col-3">
+                        <div class="layui-fluid">
+                            <div class="layui-row layui-col-space20">
+                                <div class="layui-col-sm4">
+                                    <div class="col">
+                                        <p>预警总数</p>
+                                        {% if perms.warnlist.view_warntype %}
+                                            <a class="color-origin"
+                                               href="{% url 'warnlist:warn_list' %}">{{ warn_count }}</a>
+                                        {% else %}
+                                            <a class="color-origin">{{ warn_count }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="col">
+                                        <p>已完成</p>
+                                        {% if perms.warnlist.view_warntype %}
+                                            <a class="color-yellow"
+                                               href="{% url 'warnlist:sum_list' %}?#warn-tab=2">{{ warn_success }}</a>
+                                        {% else %}
+                                            <a class="color-origin">{{ warn_success }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="col">
+                                        <p>已丢弃</p>
+                                        {% if perms.warnlist.view_warntype %}
+                                            <a class="color-green"
+                                               href="{% url 'warnlist:sum_list' %}?#warn-tab=3">{{ warn_delete }}</a>
+                                        {% else %}
+                                            <a class="color-origin">{{ warn_delete }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm6">
+                <div class="layui-row layui-col-space10" id="change-warn">
+                    <!-- 这里是异步加载最新预警信息 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-fluid">
+        <div class="layui-row index-body layui-col-space10">
+            <div class="layui-col-sm4">
+                <div class="echarts-bar index-middle" id="echarts-bar">
+
+                </div>
+            </div>
+            <div class="layui-col-sm4">
+                <div class="echarts-broken index-middle" id="echarts-broken">
+
+                </div>
+            </div>
+            <div class="layui-col-sm4">
+                <div class="echarts-pillar index-middle" id="echarts-pillar">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-sm6">
+                <!-- 折线图 -->
+                <div class="data-tv-2 echarts-color">
+                    <div class="layui-tab" lay-filter="line-echarts">
+                        <div class="count-1">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">今天</li>
+                                <li>本周</li>
+                                <li>本年度</li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <h5>处理结果数据</h5>
+                                <div class="echarts-line" id="echarts-line0">
+
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <h5>处理结果数据</h5>
+                                <div class="echarts-line" id="echarts-line1">
+
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <h5>处理结果数据</h5>
+                                <div class="echarts-line" id="echarts-line2">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm6">
+                <!-- 柱状图 -->
+                <div class="data-tv-2 echarts-color">
+                    <div class="layui-tab" lay-filter="column-echarts">
+                        <div class="count-1">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">今天</li>
+                                <li>本周</li>
+                                <li>本年度</li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <h5>任务类型数据</h5>
+                                <div class="echarts-line" id="echarts-column0">
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <h5>任务类型数据</h5>
+                                <div class="echarts-line" id="echarts-column1">
+
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <h5>任务类型数据</h5>
+                                <div class="echarts-line" id="echarts-column2">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 标注图片展示 -->
+    <div class="warn-image" id="view-image" style="display: none">
+        <canvas id="canvasId">
+
+        </canvas>
+    </div>
+
+{% endblock %}
+
+{% block my_js %}
+
+    <script type="text/html" id="index-warn">
+        {% verbatim %}
+
+        {{ if data.length == 4 }}
+
+        {{ each data warn index }}
+        <div class="layui-col-sm3">
+            <div class="index-warn" id="index-warn-1">
+                <div class="index-warn-1">
+                    <span></span>
+                    <strong>{{ warn.name }}</strong>
+                </div>
+                <div class="index-warn-3" id="index-img{{ index }}">
+                    <img src="{{ warn.image_url }}" alt="" onclick='view_image({{ warn.id }})' ;>
+                </div>
+                <div class="index-warn-5">
+                    <span>{{ warn.add_time }}</span>
+                </div>
+            </div>
+        </div>
+        {{ /each }}
+        {{ /if }}
+
+        {{ if data.length < 4 }}
+        {{ each data warn index }}
+        <div class="layui-col-sm3">
+            <div class="index-warn"  id="index-warn-2">
+                <div class="index-warn-1">
+                    <span></span>
+                    <strong>{{ warn.name }}</strong>
+                </div>
+                <div class="index-warn-3" id="index-img{{ index }}">
+                    <img src="{{ warn.image_url }}" alt="" onclick='view_image({{ warn.id }})' ;>
+                </div>
+                <div class="index-warn-5">
+                    <span>{{ warn.add_time }}</span>
+                </div>
+            </div>
+        </div>
+        {{ /each }}
+
+        <% for(var i = 0; i < 4-data.length; i++){ %>
+        <div class="layui-col-sm3">
+            <div class="index-warn-4">
+                <span>暂无预警</span>
+            </div>
+        </div>
+        <% } %>
+        {{ /if }}
+
+        {% endverbatim %}
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/data-tv.js' %}"></script>
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/template-web.js' %}"></script>
+
+    <script>
+        // 查看录像页面树结构兼容小屏幕
+        // $(document).ready(function (param) {
+        //     var width = $(window).width();
+        //     if (width <= 1366) {
+        //         var index1 = $('#index-warn-2');
+        //         var index2 = $('#index-warn-4');
+        //         var a = index1.width();
+        //         var b = index1.height();
+        //         console.log(a);
+        //         console.log(b);
+        //         index2.css('width', a);
+        //         index2.css('height', b);
+        //     }
+        // });
+        // 屏幕尺寸变化,刷新页面
+        $(window).resize(function () {
+            window.location.reload();
+        });
+
+    </script>
+
+{% endblock %}

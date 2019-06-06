@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block my_css %}
+<link rel="stylesheet" href="{% static 'css/data-tv.css' %}">
+{% endblock %}
+
+{% block title %}数据大屏{% endblock %}
+
+{% block nav_data %}active-nav{% endblock %}
+
+{% block content %}
+
+<div class="data-tv">
+    <!-- 折线图 -->
+    <div class="data-tv-2">
+        <div class="layui-tab">
+            <div class="count-1">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">近15天</li>
+                    <li>近30天</li>
+                    <li>按月统计</li>
+                    <li>按年统计</li>
+                </ul>
+            </div>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-column">
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-column">
+
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-column">
+
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-column">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 柱状图 -->
+    <div class="data-tv-2">
+        <div class="layui-tab">
+            <div class="count-1">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">近15天</li>
+                    <li>近30天</li>
+                    <li>按月统计</li>
+                    <li>按年统计</li>
+                </ul>
+            </div>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-line">
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-line">
+
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-line">
+
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <h5>实时预警统计数据</h5>
+                    <div class="echarts-line" id="echarts-line">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block my_js %}
+<script src="{% static 'js/data-tv.js' %}"></script>
+<script src="{% static 'js/echarts.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+{% endblock %}

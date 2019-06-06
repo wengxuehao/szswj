@@ -1,0 +1,20 @@
+.log p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.log-bottom {
+    text-align: center;
+}
+
+.log-btn {
+    width: 150px;
+    text-align: center;
+}
+
+.layui-btn {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 15px;
+    /*background-color: rgb(44,204,113);*/
+}

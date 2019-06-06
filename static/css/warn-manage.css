@@ -1,0 +1,62 @@
+.warnmanage-tree p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 45px;
+    color: #E5B119;
+}
+
+.warnmanage-bottom {
+    text-align: center;
+}
+
+.warnmanage-btn {
+    width: 140px;
+    text-align: center;
+}
+
+.warnmanage-tree {
+    width: 700px;
+    height: 360px;
+    background: #eeeeee;
+    padding: 20px 30px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.warnmanage-tree .warnmanage-tree-left {
+    display: inline-block;
+    float: left;
+    width: 310px;
+    height: 320px;
+    overflow-y: auto;
+    border-right:1px solid green;
+}
+
+.warnmanage-tree .warnmanage-tree-right {
+    display: inline-block;
+    width: 220px;
+    margin-left: 80px;
+}
+
+.layui-input-block {
+    margin: 10px 0 0 30px; 
+}
+
+.layui-tree-skin-demo .layui-tree-branch {
+    content: url('/static/images/icon-1.png');
+}
+
+.layui-tree-skin-demo .layui-tree-leaf {
+    content: url('/static/images/3.png');
+}
+
+.layui-icon .layui-tree-branch {
+    /*line-height: 26px;*/
+    /*margin-top: 5px;*/
+}
+
+.layui-btn {
+    height: 33px;
+    line-height: 33px;
+}

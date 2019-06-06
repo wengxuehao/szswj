@@ -1,0 +1,142 @@
+<!-- 点击新增管理员弹窗 -->
+<div class="add-manage" id="add-user" style="display:none">
+    <div class="add-manage-1">
+        <p>信息填写:</p>
+        <div class="add-manage-select">
+            <form class="layui-form" onclick="return false">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="email" required lay-verify="required" placeholder="请输入邮箱"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色:</label>
+                    <div class="layui-input-block">
+                        <select name="city" lay-verify="required" id="add-userperm" lay-filter="select-perm">
+
+                        </select>
+                    </div>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 点击修改管理员分组弹窗 -->
+
+<div class="add-manage" id="modify-user" style="display:none">
+    <div class="add-manage-1">
+        <p>已有信息:</p>
+        <div class="add-manage-select">
+            <form class="layui-form" onclick="return false">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色:</label>
+                    <div class="layui-input-block">
+                        <select name="perms" lay-verify="required" id="change-userperm" lay-filter="select-perms">
+
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 点击修改管理员密码弹窗 -->
+
+<div class="add-password" id="modify-password" style="display:none">
+    <div class="add-manage-1">
+        <div class="add-manage-select">
+            <form class="layui-form" onclick="return false">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="password1" required lay-verify="required" placeholder="请输入密码"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 点击新增角色弹窗 -->
+<div class="add-role" id="add-role" style="display:none">
+    <form class="layui-form" onclick="return false">
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名:</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input" id="role-name">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="checkbox" name="perm" value="1" title="控制台页">
+                <input type="checkbox" name="perm" value="2" title="视频监控">
+                <input type="checkbox" name="perm" value="3" title="视频墙页">
+                <input type="checkbox" name="perm" value="4" title="录像查看">
+                <input type="checkbox" name="perm" value="5" title="预警处理">
+                <input type="checkbox" name="perm" value="6" title="统计备案">
+                <input type="checkbox" name="perm" value="7" title="监控管理">
+                <input type="checkbox" name="perm" value="8" title="任务管理">
+                <input type="checkbox" name="perm" value="9" title="用户管理">
+                <input type="checkbox" name="perm" value="10" title="操作日志">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">具体描述</label>
+            <div class="layui-input-block">
+                <textarea name="desc" id="role-desc" placeholder="描述拥有的权限" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+</div>
+
+<!-- 点击修改角色弹窗 -->
+
+<div class="add-manage" id="modify-role" style="display:none">
+    <div class="add-manage-1">
+        <p>已有信息:</p>
+        <div class="add-manage-select">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色名:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="modify-name" required lay-verify="required" placeholder="请输入标题"
+                               autocomplete="off"
+                               value="" class="layui-input">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- 查看角色权限信息弹窗 -->
+
+<div class="user-perm" style="display: none" id="view-userperm">
+
+</div>

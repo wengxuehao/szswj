@@ -1,0 +1,39 @@
+.color-origin {
+    color: #FC8D6D;
+}
+
+.color-yellow {
+    color: #E5B119;
+}
+
+.color-green {
+    color: #39CF78;
+    background: none;
+}
+
+.layui-tab-title {
+    border-bottom-style: none;
+}
+
+.layui-tab-title li {
+    border-radius: 5px;
+    line-height: 36px;
+}
+
+.layui-tab-title .layui-this {
+    background: #2FCC71;
+    color: white;
+    border-color: white;
+}
+
+.layui-tab-title .layui-this:after {
+    border-width: 0;
+    border-style: none;
+    border-bottom-color: white;
+    border-radius: 0;
+    pointer-events: none;
+}
+
+.layui-tab-content {
+    padding: 0;
+}

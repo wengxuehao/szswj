@@ -1,0 +1,115 @@
+.manage-title {
+    height: 40px;
+    line-height: 40px;
+}
+
+.manage-title p {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+    background-color: rgb(44,204,113);
+    border-radius: 2px;
+    color: white;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this:after {
+    border-bottom: none;
+}
+
+.layui-tab-content {
+    padding: 0;
+}
+
+.manage-tab {
+    width: 180px;
+    text-align: center;
+}
+
+.layui-tab-title {
+    position: relative;
+}
+
+.layui-tab-title li {
+    border-radius: 5px;
+    line-height: 36px;
+}
+
+.manage-add {
+    position: absolute;
+    top: 2px;
+    right: 60px;
+}
+
+.manage-add .layui-btn {
+    height: 33px;
+    line-height: 33px;
+}
+
+.user-bottom {
+    text-align: center;
+}
+
+.add-manage {
+    width: 350px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    padding: 20px 0 10px 0;
+}
+
+.add-manage-select {
+    padding: 0 15px;
+    margin-top: 10px;
+}
+
+.layui-form-label {
+    text-align: center;
+    width: 50px;
+    padding: 9px 12px;
+}
+
+.layui-input-block {
+    margin-left: 75px;
+}
+
+.add-manage-1 p {
+    font-size: 18px;
+    color: rgb(232,187,55);
+    margin-left: 15px;
+}
+
+.add-manage-2 {
+    text-align: center;
+}
+
+.add-role {
+    padding: 15px 20px 15px 0;
+}
+
+.user-perm {
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.user-perm p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.layui-btn {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 15px;
+    /*background-color: rgb(44,204,113);*/
+}
+
+.layui-tab-title li {
+    border-radius: 5px;
+    line-height: 33px;
+}
+
+.layui-tab-title li {
+    min-width: 55px;
+}

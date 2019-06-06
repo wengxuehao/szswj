@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block my_css %}
+<link rel="stylesheet" href="{% static 'css/log.css' %}">
+{% endblock %}
+
+{% block title %}用户系统操作日志{% endblock %}
+
+{% block nav-log %}active-tab{% endblock %}
+
+{% block content %}
+
+<div class="layui-fluid log">
+        <table id="user-log" lay-filter='userlog'>
+
+        </table>
+</div>
+
+{% endblock %}
+
+
+{% block my_js %}
+
+    <!-- 表头事件 -->
+    <script type="text/html" id="log-tool">
+        <div class="layui-btn-container">
+            <button class="layui-btn" lay-event="log-del">一键删除</button>
+        </div>
+    </script>
+
+<script src="{% static 'js/log.js' %}"></script>
+{% endblock %}

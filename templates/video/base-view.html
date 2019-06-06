@@ -1,0 +1,18 @@
+{% load staticfiles %}
+
+<!-- 异步加载视频录像片段 -->
+<script type="text/html" id="video-rec">
+    {% verbatim %}
+
+    {{ each data video index }}
+
+    <p data-id="{{ index }}" class="index-data">
+        {{ video.title }}&nbsp;&nbsp;&nbsp;
+        ({{ video.start_time|timeSince }}&nbsp;~&nbsp;
+        {{ video.stop_time|timeSince }})
+    </p>
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>

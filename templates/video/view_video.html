@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}监控墙页{% endblock %}
+
+{% block my_css %}
+
+    <link rel="stylesheet" href="{% static 'css/video_home.css' %}">
+    <link href="{% static 'css/video-js.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block nav_view %}active-nav{% endblock %}
+
+{% block content %}
+
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-sm2">
+                <div class="video-left video-tree" id="video-left">
+                    <ul id="city-tree">
+
+                    </ul>
+                </div>
+                <!-- 弹窗视频录像逻辑 -->
+                <div class="video-return" id="video-return">
+                    <div class="video-play-0">
+                        <span>录像查询播放窗口</span>
+                    </div>
+                    <hr>
+                    <div class="video-play-1">
+                        <div class="layui-row">
+                            <div class="layui-col-sm4">
+                                <span>筛选日期:</span>
+                            </div>
+                            <div class="layui-col-sm8">
+                                <div class="date-input">
+                                    <input type="text" id="video-date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="video-play-2" id="video-play">
+
+                    </div>
+                    <hr>
+{#                    <div class="video-play-3">#}
+{#                        <button class="layui-btn layui-btn-normal" id="add-warn">生成预警单</button>#}
+{#                    </div>#}
+                </div>
+            </div>
+            <div class="layui-col-sm10" id="video-side-ok">
+                <div class="video-right-one" id="tab-one">
+                    <div class="layui-row">
+                        <div class="layui-col-md12" id="video-click">
+                            <video id="player" class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered"
+                                   controls preload="auto" autoplay="autoplay"
+                                   poster="{% static 'images/demo.jpg' %}"
+                                   width="680" height="400"
+                                   data-setup='{}'>
+
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'video/base-view.html' %}
+
+{% endblock %}
+
+{% block my_js %}
+
+    <script src="{% static 'js/view_video.js' %}"></script>
+    <script src="{% static 'js/video.js' %}"></script>
+    <script src="{% static 'js/template-web.js' %}"></script>
+
+    <script>
+        // 查看录像页面树结构兼容小屏幕
+        $(document).ready(function (param) {
+            var width = $(window).width();
+            if (width <= 1366) {
+                var video1 = $('#video-left');
+                var video2 = $('.video-right-one');
+                var video3 = $('.video-return');
+                var video4 = $('.video-play-2');
+                var video5 = $('.video-play-3');
+                video1.css('width', '250px');
+                video1.css('height', '200px');
+                video2.css('float', 'right');
+                video2.css('width', '860px');
+                video2.css('height', '500px');
+                video3.css('width', '270px');
+                video4.css('height', '60px');
+                video5.css('height', '50px');
+            }
+        });
+
+    </script>
+
+{% endblock %}

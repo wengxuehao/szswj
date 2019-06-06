@@ -1,0 +1,720 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/index-data.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layui.css' %}">
+    <title>数据大屏</title>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row index-top">
+        <div class=" index-title">
+            <img src="{% static 'images/title-left.png' %}">
+            <p class="index-title-font">苏州城区河道视频管理系统</p>
+            <img src="{% static 'images/title-right.png' %}">
+        </div>
+        <div class="title-date">
+            <p id="DateTime">实时数据</p>
+        </div>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space30">
+        <div class="layui-col-sm4">
+            <div class="layui-col-sm12">
+                <div class="index-left">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 135px">
+                        <b class="data-title-left">[</b>
+                        <span>来源统计</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-sm5">
+                            <div class="sum-1">
+                                <div class="sum-1-1">
+                                    <span>总数</span>
+                                    <strong id="sum-1">
+
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="sum-2">
+                                <div class="sum-1-2">
+                                    <span>主来源</span>
+                                    <strong id="sum-2">
+
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm7">
+                            <div class="echarts-bang" id="echarts-bang">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm12">
+                <div class="index-left">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 215px">
+                        <b class="data-title-left">[</b>
+                        <span>城管本周处置情况</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car1">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_1 }}</p>
+                                    <span>回复率</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car2">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_2 }}</p>
+                                    <span>完结率</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car3">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_3 }}</p>
+                                    <span>丢弃率</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm12">
+                <div class="index-left">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 215px">
+                        <b class="data-title-left">[</b>
+                        <span>系统本周处置情况</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car4">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_4 }}</p>
+                                    <span>处理率</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car5">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_5 }}</p>
+                                    <span>上报率</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-car">
+                                <div class="echarts-car" id="echarts-car6">
+
+                                </div>
+                                <div class="result">
+                                    <p>{{ data_6 }}</p>
+                                    <span>丢弃率</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm12">
+                <div class="layui-row">
+                    <div class="layui-col-sm6">
+                        <div class="index-left">
+                            <i class="topL"></i>
+                            <i class="topR"></i>
+                            <i class="bottomL"></i>
+                            <i class="bottomR"></i>
+                            <div class="data-title" style="width: 175px">
+                                <b class="data-title-left">[</b>
+                                <span>高发事件类型</span>
+                                <b class="data-title-right">]</b>
+                            </div>
+                            <div class="index-cake">
+                                <div class="echarts-cake" id="echarts-cake">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm6">
+                        <div class="index-left">
+                            <i class="topL"></i>
+                            <i class="topR"></i>
+                            <i class="bottomL"></i>
+                            <i class="bottomR"></i>
+                            <div class="data-title" style="width: 175px">
+                                <b class="data-title-left">[</b>
+                                <span>高发监控区域</span>
+                                <b class="data-title-right">]</b>
+                            </div>
+                            <div class="index-column">
+                                <div class="echarts-column" id="echarts-column">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm4 center-height">
+            <div class="layui-col-sm12">
+                <div class="index-center">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 175px">
+                        <b class="data-title-left">[</b>
+                        <span>今日最新统计</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>今日总计</span>
+                                    <strong>{{ today_all }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>待办预警</span>
+                                    <strong>{{ today_rec }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>预警丢弃</span>
+                                    <strong>{{ today_del }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>上报城管</span>
+                                    <strong>{{ today_send }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>城管办理</span>
+                                    <strong>{{ today_make }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>城管反馈</span>
+                                    <strong>{{ today_sum }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>监控总数</span>
+                                    <strong>{{ map_all }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>在线监控</span>
+                                    <strong>{{ map_online }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="index-send">
+                                <div class="index-send-1">
+                                    <span>离线监控</span>
+                                    <strong>{{ map_fail }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm12">
+                <div class="index-center bottom-height">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 97px">
+                        <b class="data-title-left">[</b>
+                        <span>地图</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="index-map">
+                        <div class="bdmap" id="map">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm4">
+            <div class="layui-col-sm12">
+                <div class="index-right right-height">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 137px">
+                        <b class="data-title-left">[</b>
+                        <span>最新预警</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+
+                    {% for warn in new_warns %}
+
+                        <div class="layui-col-sm12">
+                            <div class="index-news">
+                                <img src="{% static 'images/time2.png' %}" alt="">
+                                <div class="news">
+                                    <p>工单编号:</p>
+                                    <span>{{ warn.event_id }}</span>
+                                    <strong>{{ warn.add_time }}</strong>
+                                    <h5>{{ warn.map__name }}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="layui-col-sm12">
+                <div class="index-right height-bottom">
+                    <i class="topL"></i>
+                    <i class="topR"></i>
+                    <i class="bottomL"></i>
+                    <i class="bottomR"></i>
+                    <div class="data-title" style="width: 177px">
+                        <b class="data-title-left">[</b>
+                        <span>本周操作统计</span>
+                        <b class="data-title-right">]</b>
+                    </div>
+                    <div class="index-col">
+                        <div class="echarts-col" id="cols">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="sum-data1">
+    {% verbatim %}
+    {{ count }}
+    {% endverbatim %}
+</script>
+
+<script type="text/html" id="sum-data2">
+    {% verbatim %}
+    {{ name }}
+    {% endverbatim %}
+</script>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/layui.js' %}"></script>
+<script src="{% static 'js/template-web.js' %}"></script>
+<script src="{% static 'js/echarts.js' %}"></script>
+<script src="{% static 'js/index-data.js' %}"></script>
+<script src="{% static 'js/times.js' %}"></script>
+<script src="{% static 'js/bdmap.js' %}"></script>
+
+<script>
+
+    // 每10秒钟刷新一次
+    $(function () {
+        setInterval(function () {
+            window.location.reload();
+        }, 60000);
+    });
+
+    // *****************************************************************
+
+    // 城管7天处置问题
+    // *****************************************************************
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car1'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data1 }}}]
+                },
+
+            ]
+        });
+    });
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car2'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data2 }}}]
+                },
+
+            ]
+        });
+    });
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car3'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data3 }}}]
+                },
+
+            ]
+        });
+    });
+
+    // *****************************************************************
+
+
+    // 河道7天处置问题
+    // *****************************************************************
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car4'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data4 }}}]
+                },
+
+            ]
+        });
+    });
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car5'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data5 }}}]
+                },
+
+            ]
+        });
+    });
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('echarts-car6'));
+        myChart.setOption({
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series: [
+                {
+                    name: '转速',
+                    type: 'gauge',
+                    center: ['50%', '82%'],    // 默认全局居中
+                    radius: '163%',
+                    min: 0,
+                    max: 100,
+                    // show: false,
+                    startAngle: 180,
+                    endAngle: 0,
+                    splitNumber: '',
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 5
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    splitLine: {           // 分隔线
+                        length: 10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 3
+                    },
+                    title: {
+                        show: false,
+                    },
+                    detail: {
+                        show: false,
+                    },
+                    data: [{value: {{ data6 }}}]
+                },
+
+            ]
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

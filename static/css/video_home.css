@@ -1,0 +1,188 @@
+.body {
+    height: 100%;
+}
+
+.video-left {
+    /*height: 100%;*/
+    max-height: 880px;
+    overflow-y: scroll;
+    background-color: white;
+    position: relative;
+    padding: 10px 10px;
+}
+
+.video-left-1 {
+    /*height: 100%;*/
+    max-height: 780px;
+    overflow-y: scroll;
+    background-color: white;
+    position: relative;
+    padding: 10px 10px;
+}
+
+.video-tree {
+    max-height: 410px;
+}
+
+.video-side {
+    position: absolute;
+    right: 0;
+    top: 320px;
+    height: 65px;
+    width: 35px;
+    background-color: #FFB800;
+    z-index: 999999;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.video-side i {
+    line-height: 65px;
+    font-size: 18px;
+}
+
+.video-side-show {
+    height: 65px;
+    width: 30px;
+    background-color: #FFB800;
+    z-index: 9999999;
+    float: left;
+    position: absolute;
+    top: 150px;
+    left: 180px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.video-side-show i {
+    line-height: 65px;
+    font-size: 18px;
+}
+
+.video-left ul {
+    font-size: 16px;
+}
+
+.video-left p{
+    font-size:16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.video-select {
+    width: 200px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.video-select button {
+    margin: 60px 0 0 80px;
+}
+
+.video-return {
+    margin-top: 16px;
+    background: white;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.video-return .video-play-0 span {
+    display: inline-block;
+    height: 30px;
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.video-play-1 {
+    height: 50px;
+    background: white;
+    padding: 0 15px 0 10px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.video-play-1 span {
+    display: inline-block;
+    height: 40px;
+    /*font-size: 14px;*/
+    line-height: 40px;
+}
+
+.video-play-1 input {
+    display: inline-block;
+    border-radius: 3px;
+    max-width: 140px;
+    font-size: 16px;
+    color: red;
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+}
+
+.video-play-2 {
+    height: 220px;
+    background: white;
+    text-align: left;
+    margin-top: 8px;
+    overflow-y: auto;
+}
+
+.video-play-2 p {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.video-play-3 {
+    height: 60px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.video-play-3 .layui-btn {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 15px;
+}
+
+.layui-laydate {
+    background: white !important;
+}
+
+.video-right-one .layui-fluid {
+    padding: 0;
+}
+
+.index-data {
+    cursor: pointer;
+}
+
+.index-data:hover {
+    color: #4E5465;
+}
+
+.layui-tree-skin-demo .layui-tree-branch {
+    content: url('/static/images/icon-1.png');
+}
+
+.layui-tree-skin-demo .layui-tree-leaf {
+    content: url('/static/images/3.png');
+}
+
+.layui-icon .layui-tree-branch {
+    /*line-height: 26px;*/
+    /*margin-top: 5px;*/
+}
+
+#video-side-ok {
+    position: relative;
+}
+
+.video-right {
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

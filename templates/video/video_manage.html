@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}视频监控页{% endblock %}
+
+{% block my_css %}
+
+    <link rel="stylesheet" href="{% static 'css/video.css' %}">
+    <link rel="stylesheet" href="{% static 'css/video_home.css' %}">
+
+{% endblock %}
+
+{% block nav-video %}active-tab{% endblock %}
+
+{% block content %}
+
+    <div class="video-side-show">
+        <i class="layui-icon layui-icon-spread-left"></i>
+    </div>
+
+    <div class="layui-fluid color-body">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md2">
+                <div class="video-left" id="manage-left">
+                    <ul id="city-tree">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-col-md10">
+                <div class="warn-map" id="allmap">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="warn-list">
+                <ul>
+                    <li>
+                        <div class="dian layui-bg-cyan"></div>
+                        <strong>全部</strong>
+                        <span>({{ map_sum }})</span>
+                    </li>
+                    <li>
+                        <div class="dian layui-bg-green"></div>
+                        <strong>在线</strong>
+                        <span>({{ map_good }})</span>
+                    </li>
+                    <li id='show-down'>
+                        <div class="dian layui-bg-orange"></div>
+                        <strong>离线</strong>
+                        <span>({{ map_fail }})</span>
+                    </li>
+                </ul>
+            </div>
+
+        <!-- 点击监控点弹窗 -->
+        <div class="video-manage" id="video-manage" style="display: none">
+            <div class="video-manage-1">
+                <p>信息修改:</p>
+                <div class="video-manage-select">
+                    <form class="layui-form" onsubmit="return false;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">监控名:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" required lay-verify="required" id="map-name"
+                                       placeholder="请输入名称,不大于8个字符" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="show-maps">
+        {% for map in show_maps %}
+            <p>{{ map.name }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+
+{% block my_js %}
+    <script src="{% static 'js/video_manage.js' %}"></script>
+    <script src="{% static 'js/bdmap.js' %}"></script>
+
+<script>
+// 视频监控页面树结构兼容小屏幕
+$(document).ready(function (param) { 
+    var width = $(window).width();
+    if (width <= 1366) {
+        var maps = $('#allmap');
+        var map = $('#manage-left');
+        maps.css('width', '880px');
+        map.css('width', '250px');
+    }
+ })
+</script>
+
+{% endblock %}

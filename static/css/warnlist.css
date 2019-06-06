@@ -1,0 +1,64 @@
+
+.warn-title {
+    height: 40px;
+    line-height: 40px;
+}
+
+.warn-title p {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.warn-title button {
+    float: right;
+}
+
+.warn-select {
+    background: transparent;;
+    border: 1px solid #ccc;
+    height: 28px;
+    margin-left: 15px;
+}
+
+.warn-image img {
+    width: 50px;
+    height: 50px;
+}
+
+.warn-send {
+    width: 400px;
+    height: 380px;
+    /* background: pink; */
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+    background-color: rgb(44,204,113);
+    border-radius: 2px;
+    color: white;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this:after {
+    border-bottom: none;
+}
+
+.warnlist-btn {
+    width: 160px;
+    text-align: center;
+}
+
+.layui-input-block {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.layui-btn {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 15px;
+    /*background-color: rgb(44,204,113);*/
+}
+
+.video-views {
+    padding-left: 10px;
+    box-sizing: border-box;
+}

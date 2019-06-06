@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}预警分析页{% endblock %}
+
+{% block my_css %}
+
+<link rel="stylesheet" href="{% static 'css/sum_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-js.css' %}">
+
+{% endblock %}
+
+{% block nav-sum %}active-tab{% endblock %}
+
+{% block content %}
+
+{% comment %} <div class="layui-fluid">
+    <div class="layui-row">
+        <div class="warn-title">
+            <p>预警备案统计</p>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<div class="layui-fluid">
+    <div class="layui-tab layui-tab-brief" lay-filter="warn-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id='1'>已发送</li>
+            <li lay-id='2'>已完成</li>
+            <li lay-id='3'>已丢弃</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table id="table-sum1" lay-filter='warnlist1'>
+
+                </table>
+            </div>
+            <div class="layui-tab-item">
+                <table id="table-sum2" lay-filter='warnlist2'>
+
+                </table>
+            </div>
+            <div class="layui-tab-item">
+                <table id="table-sum3" lay-filter='warnlist3'>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 标注图片展示 -->
+<div class="warn-image" id="image-url" style="display: none">
+    <canvas id="canvasId">
+
+    </canvas>
+</div>
+
+<!-- 弹窗播放视频 -->
+<div style="display: none" id="video-views" class="video-views">
+    <video id="play-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"
+        autoplay="autoplay" width="680" height="400" data-setup='{}'>
+    </video>
+</div>
+
+<!-- 显示弹窗图片 -->
+<div id="image-views" style="display: none">
+
+</div>
+
+    <!-- 显示弹窗城管图片 -->
+<div id="manage-views" style="display: none">
+
+</div>
+
+{% endblock %}
+
+{% block my_js %}
+
+<script src="{% static 'js/sum_list.js' %}"></script>
+<script src="{% static 'js/template-web.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+
+<script type="text/html" id="sum-image">
+    <p lay-event="sum-warn">单击观看图片</p>
+</script>
+
+<script type="text/html" id="warn-image">
+    <p lay-event="view-image">双击观看图片</p>
+</script>
+
+<script type="text/html" id="warn-video">
+    <p lay-event="view-video">点击观看视频</p>
+</script>
+
+<script type="text/html" id="manage-images">
+    <p lay-event="manage-image">双击观看图片</p>
+</script>
+
+<script type="text/html" id="add-image">
+    {% verbatim %}
+
+    {{ each data image index }}
+
+    <img src="{{ image.image_url }}" alt="" id="image{{ index }}">
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>
+
+<script type="text/html" id="add-manage">
+    {% verbatim %}
+
+    {{ each data images index }}
+
+    <img src="{{ images.images_url }}" alt="" id="images{{ index }}">
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>
+
+{% endblock %}

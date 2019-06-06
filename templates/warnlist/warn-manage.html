@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block my_css %}
+<link rel="stylesheet" href="{% static 'css/warn-manage.css' %}">
+{% endblock %}
+
+{% block title %}预警任务管理{% endblock %}
+
+{% block nav-manage %}active-tab{% endblock %}
+
+{% block content %}
+
+<div class="layui-fluid">
+    <table id="manage-table" lay-filter='warnmanage'>
+
+    </table>
+</div>
+
+<div class="warnmanage-tree" id="warnmanage-tree" style="display:none;">
+    <div class="warnmanage-tree-left">
+        <p>请勾选城市菜单:</p>
+        <ul id="city-tree">
+
+        </ul>
+    </div>
+
+    <div id="manage-desc">
+
+    </div>
+</div>
+
+    <!-- 前端异步模板引擎动态添加任务类型check -->
+    <script id="manage-list" type="text/html">
+
+        {% verbatim %}
+
+        <div class="warnmanage-tree-right">
+            <p>选择监控点处理任务:</p>
+            <form class="layui-form" onclick="return false">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+
+                        {{ each data desc index }}
+
+                        <input type="checkbox" name="manage" value="{{ desc.type_id }}" title="{{ desc.type_name }}">
+
+                        {{ /each }}
+                    </div>
+                </div>
+                <button id="rec-manage" class="layui-btn" style="margin-left: 35px">确认选择</button>
+            </form>
+        </div>
+
+        {% endverbatim %}
+
+    </script>
+
+{% endblock %}
+
+{% block my_js %}
+
+    <!-- 表头事件 -->
+    <script type="text/html" id="warnmanage-tool">
+        <div class="layui-btn-container">
+            <button class="layui-btn" lay-event="add-warnmanage">新增任务</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="warn-manage">
+        <button class="layui-btn layui-btn-normal" id="warn-save" lay-event="manage-del">删除</button>
+    </script>
+
+<script src="{% static 'js/template-web.js' %}"></script>
+<script src="{% static 'js/warn-manage.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!-- 信息窗口弹出层 - 4个-->
+<div class="video-select" id="video-select" style="display: none">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择编号</label>
+            <div class="layui-input-block">
+                <select name="number" lay-verify="required" id="select-num">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="start-video" id="start-video" style="display: none">
+    <video id="player" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"
+        autoplay="autoplay" width="680" height="400" data-setup='{}'>
+
+    </video>
+</div>
+
+
+<!-- 异步加载视频录像片段 -->
+<script type="text/html" id="video-rec">
+    {% verbatim %}
+
+    {{ each data video index }}
+
+    <p data-id="{{ index }}" class="index-data">
+        {{ video.title }}&nbsp;&nbsp;&nbsp;
+        ({{ video.start_time|timeSince }}&nbsp;~&nbsp;
+        {{ video.stop_time|timeSince }})
+    </p>
+
+    {{ /each }}
+
+    {% endverbatim %}
+</script>

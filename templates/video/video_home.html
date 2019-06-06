@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}监控墙页{% endblock %}
+
+{% block my_css %}
+
+    <link rel="stylesheet" href="{% static 'css/video_home.css' %}">
+    <link href="{% static 'css/video-js.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block nav_home %}active-nav{% endblock %}
+
+{% block content %}
+
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-sm2">
+                <div class="video-left-1" id="video-left">
+                    <ul id="city-tree">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-col-sm10" id="video-side-ok">
+                <div class="video-right">
+                        <div class="layui-row layui-col-space10">
+                            <div class="layui-col-sm6">
+                                <div class="video-tv">
+                                    <video id="player1"
+                                           class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered"
+                                           controls preload="auto" autoplay="autoplay"
+                                           poster="{% static 'images/demo.jpg' %}"
+                                           width="680" height="400" data-setup='{}'>
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6">
+                                <div class="video-tv">
+                                    <video id="player2"
+                                           class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered"
+                                           controls preload="auto" autoplay="autoplay"
+                                           poster="{% static 'images/demo.jpg' %}"
+                                           width="680" height="400" data-setup='{}'>
+
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6">
+                                <div class="video-tv">
+                                    <video id="player3"
+                                           class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered"
+                                           controls preload="auto" autoplay="autoplay"
+                                           poster="{% static 'images/demo.jpg' %}"
+                                           width="680" height="400" data-setup='{}'>
+
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6">
+                                <div class="video-tv">
+                                    <video id="player4"
+                                           class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered"
+                                           controls preload="auto" autoplay="autoplay"
+                                           poster="{% static 'images/demo.jpg' %}"
+                                           width="680" height="400" data-setup='{}'>
+
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'video/base-tab.html' %}
+
+{% endblock %}
+
+{% block my_js %}
+
+    <script src="{% static 'js/video_home.js' %}"></script>
+    <script src="{% static 'js/template-web.js' %}"></script>
+    <script src="{% static 'js/video.js' %}"></script>
+
+    <script>
+        // 视频墙页面树结构兼容小屏幕
+        $(document).ready(function (param) {
+            var width = $(window).width();
+            if (width <= 1366) {
+                var map1 = $('#video-side-ok');
+                var map2 = $('#video-left');
+                var map3 = $('.video-right');
+                map1.css('width', '920px');
+                map1.css('float', 'right');
+                map2.css('width', '210px');
+                map3.css('width', '860px');
+            }
+        });
+
+    </script>
+
+{% endblock %}
